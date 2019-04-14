@@ -3,7 +3,7 @@ package uniq
 import "testing"
 
 func TestFilter(t *testing.T) {
-	f := New()
+	f := NewFilter()
 	if !f.PutAll("a", "b", "c") {
 		t.Fatal("failed to put fresh value list")
 	}
@@ -39,7 +39,7 @@ func testPutDel(f *Filter, put, del []string, done chan bool) {
 
 func TestFilterConcurrent(t *testing.T) {
 	const N = 1000000
-	f := New()
+	f := NewFilter()
 	c := make(chan bool)
 	defer close(c)
 	go testPutDel(f, []string{"a", "b"}, []string{"c", "d", "e"}, c)
@@ -53,7 +53,7 @@ func TestFilterConcurrent(t *testing.T) {
 }
 
 func BenchmarkFilter(b *testing.B) {
-	f := New()
+	f := NewFilter()
 	for n := 0; n < b.N; n++ {
 		f.PutAll("z")
 		f.DelAll("z")
@@ -61,7 +61,7 @@ func BenchmarkFilter(b *testing.B) {
 }
 
 func BenchmarkFilterConcurrentLoadx2(b *testing.B) {
-	f := New()
+	f := NewFilter()
 	c := make(chan bool)
 	defer close(c)
 	go testPutDel(f, []string{"a", "b"}, []string{"c", "d", "e"}, c)
