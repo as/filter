@@ -17,7 +17,7 @@ func New() *Filter {
 // filter. It supports atomic multi-key put and delete
 // operations.
 type Filter struct {
-	sync.RWMutex
+	sync.Mutex
 	m map[string]struct{}
 	// TODO(as): use sys package
 	_ [96]byte // cache line pad
