@@ -45,6 +45,9 @@ func (f *Ctr) Dec(key ...string) {
 	defer f.Unlock()
 	for _, key := range key {
 		f.m[key]--
+		if f.m[key] == 0 {
+			delete(f.m, key)
+		}
 	}
 	return // return the min?
 }
