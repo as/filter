@@ -9,7 +9,7 @@ package uniq
 import "sync"
 
 // New returns a ready-to-use deterministic uniqueness filter
-func New() *Filter {
+func NewFilter() *Filter {
 	return &Filter{m: map[string]struct{}{}}
 }
 
