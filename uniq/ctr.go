@@ -23,7 +23,7 @@ type Ctr struct {
 }
 
 // Inc increments the given keys by 1. It returns
-// the maxima of the provided key set before the
+// the maxima of the provided key set after the
 // increment occurs. That is, if the input is ("a", "b")
 // and the respective counts are (1, 7), it updates the counts
 // to (2, 8) and returns 8. 
